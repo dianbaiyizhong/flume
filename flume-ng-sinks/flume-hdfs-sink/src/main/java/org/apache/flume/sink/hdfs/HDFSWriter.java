@@ -32,7 +32,6 @@ import org.apache.hadoop.io.compress.CompressionCodec;
 public interface HDFSWriter extends Configurable {
 
   public void open(String filePath) throws IOException;
-
   public void open(String filePath, CompressionCodec codec,
       CompressionType cType) throws IOException;
 

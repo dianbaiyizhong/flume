@@ -24,7 +24,7 @@ public class HDFSWriterFactory {
     static final String SequenceFileType = "SequenceFile";
     static final String DataStreamType = "DataStream";
     static final String CompStreamType = "CompressedStream";
-    static final String OrcStream = "OrcStream";
+    static final String OrcStream = "HiveDataStream";
 
     public HDFSWriterFactory() {
 
@@ -38,7 +38,7 @@ public class HDFSWriterFactory {
         } else if (fileType.equalsIgnoreCase(CompStreamType)) {
             return new HDFSCompressedDataStream();
         } else if (fileType.equalsIgnoreCase(OrcStream)) {
-            return new OrcDataStream();
+            return new HiveDataStream();
         } else {
             throw new IOException("File type " + fileType + " not supported");
         }

@@ -54,7 +54,6 @@ limitations under the License.
       <version>3.3.1</version>
     </dependency>
 
-
     <dependency>
       <groupId>org.apache.flume</groupId>
       <artifactId>flume-ng-configuration</artifactId>
