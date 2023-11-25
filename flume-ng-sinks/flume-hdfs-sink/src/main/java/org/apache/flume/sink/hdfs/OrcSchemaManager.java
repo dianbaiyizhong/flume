@@ -2,6 +2,7 @@ package org.apache.flume.sink.hdfs;
 
 import com.google.common.collect.Lists;
 import org.apache.orc.TypeDescription;
+import org.apache.orc.Writer;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +15,9 @@ public class OrcSchemaManager {
     private Map<String, List<String>> schemaMap = new HashMap<>();
 
 
+
+
+
     public TypeDescription getSchema(String key) {
 
         TypeDescription schema = TypeDescription.createStruct();
@@ -23,6 +27,12 @@ public class OrcSchemaManager {
             schema.addField(list.get(i), TypeDescription.createString());
         }
         return schema;
+    }
+
+    public void addSchema(String key, List<String> fieldNames) {
+
+        schemaMap.put(key, fieldNames);
+
     }
 
     private OrcSchemaManager() {

@@ -38,7 +38,7 @@ public class HDFSWriterFactory {
         } else if (fileType.equalsIgnoreCase(CompStreamType)) {
             return new HDFSCompressedDataStream();
         } else if (fileType.equalsIgnoreCase(OrcStream)) {
-            return new HiveDataStream();
+            return new OrcDataStream2();
         } else {
             throw new IOException("File type " + fileType + " not supported");
         }

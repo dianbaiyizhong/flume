@@ -437,23 +437,30 @@ class BucketWriter {
 
     LOG.info("Closing {}", bucketPath);
     if (isOpen) {
+      LOG.info("bucketPath: {}", bucketPath);
+
       new CloseHandler().close(immediate);
+      LOG.info("bucketPath: {}", bucketPath);
+
       isOpen = false;
     } else {
       LOG.info("HDFSWriter is already closed: {}", bucketPath);
     }
+    LOG.info("bucketPath: {}", bucketPath);
 
     // NOTE: timed rolls go through this codepath as well as other roll types
     if (timedRollFuture != null && !timedRollFuture.isDone()) {
       timedRollFuture.cancel(false); // do not cancel myself if running!
       timedRollFuture = null;
     }
+    LOG.info("bucketPath: {}", bucketPath);
 
     if (idleFuture != null && !idleFuture.isDone()) {
       idleFuture.cancel(false); // do not cancel myself if running!
       idleFuture = null;
     }
-
+    LOG.info("bucketPath: {}", bucketPath);
+    System.out.println(fileSystem);
     if (bucketPath != null && fileSystem != null) {
       // could block or throw IOException
       try {
@@ -667,6 +674,7 @@ class BucketWriter {
   // bucket writer would still be alive in the Callable instance.
   private void renameBucket(String bucketPath, String targetPath, final FileSystem fs)
       throws IOException, InterruptedException {
+    System.out.println(bucketPath + "___" + targetPath);
     if (bucketPath.equals(targetPath)) {
       return;
     }
